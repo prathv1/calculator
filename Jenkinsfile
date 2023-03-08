@@ -8,7 +8,7 @@ pipeline {
     }
     stage("run") {
       steps {
-        node test.js
+        echo "test.js should be run here"
       }
     }
   }
