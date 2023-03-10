@@ -4,6 +4,8 @@ pipeline {
   stages {
     stage("build") {
       steps {
+        sh 'npm install'
+        echo 'Node Modules Installed'
         sh 'npm run build'
         echo 'build step done'
       }
