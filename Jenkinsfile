@@ -3,12 +3,15 @@ pipeline {
   stages {
     stage("build") {
       steps {
+        sh 'npm run build'
         echo 'build step done'
       }
     }
-    stage("run") {
+    stage("deploy") {
       steps {
-        echo "test.js should be run here"
+        sh 'cd ./dist'
+        echo "ready for deploy"
+        echo "deployment should be done here"
       }
     }
   }
