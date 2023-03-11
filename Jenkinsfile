@@ -10,7 +10,7 @@ pipeline {
     }
     stage("Docker build") {
       steps{
-        sh 'sudo docker build -t calcapp .'
+        sh 'docker build -t calcapp .'
       }
     }
     stage("Docker Run") {
