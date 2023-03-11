@@ -5,17 +5,25 @@ pipeline {
     stage("build") {
       steps {
         sh 'npm install'
-        echo 'Node Modules Installed'
         sh 'npm run build'
-        echo 'build step done'
       }
     }
-    stage("deploy") {
+    stage("Docker build") {
+        sh 'docker build -t calcapp .'
+    }
+    stage("Docker Run") {
       steps {
-        sh 'cd ./dist'
-        echo "ready for deploy"
-        echo "deployment should be done here"
+        sh 'docker tag calcapp prathvirajbn/calcapp'
+        withDockerRegistry([ credentialsId: "dockerHubCreds", url: "" ]) {
+          sh 'docker push prathvirajbn/calcapp:latest'
+        }
       }
     }
+    // stage("deploy") {
+    //   steps {
+    //     sh 'cd ./dist'
+    //     sh 'ansible-playbook deploy.yml'
+    //   }
+    // }
   }
 }
