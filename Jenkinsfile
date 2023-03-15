@@ -9,7 +9,7 @@ pipeline {
     }
     stage("Docker Run") {
       steps {
-        // sh 'docker tag calcapp prathvirajbn/calcapp'
+        sh 'docker tag calcapp prathvirajbn/calcapp'
         withDockerRegistry([ credentialsId: "dockerHubCreds", url: "" ]) {
           sh 'docker push prathvirajbn/calcapp:latest'
           // docker run -p 4001:3000 calcapp
