@@ -17,11 +17,10 @@ pipeline {
         }
       }
     }
-    // stage("deploy") {
-    //   steps {
-    //     sh 'cd ./dist'
-    //     sh 'ansible-playbook deploy.yml'
-    //   }
-    // }
+    stage("deploy") {
+      steps {
+        sh 'ansible-playbook playbook.yml -i ansibleInventory.ini'
+      }
+    }
   }
 }
