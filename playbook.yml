@@ -8,4 +8,4 @@
         source: pull
 
     - name: Create Docker container
-      shell: "sudo docker run -d -p 4001:3000 prathvirajbn/calcapp"
+      shell: "docker run -d -p 4001:3000 prathvirajbn/calcapp"
