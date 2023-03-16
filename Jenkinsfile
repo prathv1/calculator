@@ -4,7 +4,7 @@ pipeline {
   stages {
     stage('test') {
       steps {
-        sh 'cd server'
+        sh 'cd server/'
         sh 'pwd'
         sh 'npm i'
         sh 'pm2 --name server start npm -- start'
