@@ -4,13 +4,14 @@ pipeline {
   stages {
     stage('test') {
       steps {
-        sh 'cd server/'
-        sh 'pwd'
-        sh 'npm i'
-        sh 'pm2 --name server start npm -- start'
-        sh 'npm test'
-        sh 'pm2 delete 0'
-        echo 'All test passed!'
+        dir("server") {
+          sh "pwd"
+          sh 'npm i'
+          sh 'pm2 --name server start npm -- start'
+          sh 'npm test'
+          sh 'pm2 delete 0'
+          echo 'All test passed!'
+        }
       }
     }
     stage('Docker build') {
