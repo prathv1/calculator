@@ -4,8 +4,11 @@ pipeline {
   stages {
     stage('test') {
       steps {
-        sh 'cd server'
-        sh 'node test'
+        sh 'npm install pm2 -g'
+        sh 'pm2 --name server start npm -- start'
+        sh 'npm test'
+        sh 'pm2 delete 0'
+        echo 'All test passed!'
       }
     }
     stage('Docker build') {
