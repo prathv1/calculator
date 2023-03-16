@@ -5,6 +5,7 @@ pipeline {
     stage("Docker build") {
       steps{
         sh 'docker build -f Dockerfile -t calcapp .'
+        sh 'docker build -f server/Dockerfile -t server ./server'
       }
     }
     stage("Docker Run") {
