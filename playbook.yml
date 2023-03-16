@@ -13,8 +13,9 @@
         tag: latest
         source: pull
 
-    - name: Create Docker container
-      shell: "sudo docker run -d -p 4001:3000 prathvirajbn/calcapp"
+    - name: Create Docker containe
+      shell: "docker run -d -p 4001:3000 prathvirajbn/calcapp"
     
     - name: Create Docker container server
-      shell: "sudo docker run -d -p 4002:4002 prathvirajbn/server"
+      shell: "docker run -d -p 4002:4002 prathvirajbn/server"
+
