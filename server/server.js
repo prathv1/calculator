@@ -1,6 +1,7 @@
 const cors = require('cors')
-const logger = require('./logger');
 const express = require("express");
+const request = require("supertest");
+const logger = require('./logger');
 
 const app = express();
 const port = 4002;
@@ -15,8 +16,8 @@ function factorial(n) {
   return n * factorial(n - 1);
 }
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+app.get("/api/", (req, res) => {
+  res.json({"txt" : "Hello World!"});
 });
 
 app.post("/api/calculate", (req, res) => {
@@ -76,3 +77,4 @@ app.post("/api/calculate", (req, res) => {
 app.listen(port, () => {
   logger.log("info",`Calculator BackEnd listening on port ${port}`);
 });
+
