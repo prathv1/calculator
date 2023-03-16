@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-
 import "./index.css";
+import renderer from 'react-test-renderer';
 
 function index() {
   const insert = (e) => {
@@ -8,61 +8,21 @@ function index() {
   };
   const [text, setText] = useState("");
 
-  const clearScreen = () => {};
-  const calculate = (str) => {
-    let operatorIndex = -1;
-    let result = NaN;
-    if (str.includes("^")) {
-      operatorIndex = str.indexOf("^");
-      let base = parseFloat(str.slice(0, operatorIndex));
-      let exponent = parseFloat(str.slice(operatorIndex + 1));
-      result = Math.pow(base, exponent);
-    } else if (str.includes("ln")) {
-      operatorIndex = str.indexOf("ln");
-      let operand = parseFloat(str.slice(operatorIndex + 2));
-      if (operand > 0) {
-        result = Math.log(operand);
-      }
-    } else if (str.includes("!")) {
-      operatorIndex = str.indexOf("!");
-      let operand = parseFloat(str.slice(0, operatorIndex));
-      if (Number.isInteger(operand) && operand >= 0) {
-        result = factorial(operand);
-      }
-    } else if (str.includes("√")) {
-      operatorIndex = str.indexOf("√");
-      let operand = parseFloat(str.slice(operatorIndex + 1));
-      if (operand >= 0) {
-        result = Math.sqrt(operand);
-      }
-    }
-    if (operatorIndex === -1) {
-      console.log("Operator not found");
-    } else if (isNaN(result)) {
-      console.log("Invalid expression");
-    } else {
-      let leftPart = str.slice(0, operatorIndex);
-      let rightPart = str.slice(operatorIndex + 1);
-      console.log(
-        leftPart +
-          " " +
-          str.slice(operatorIndex, operatorIndex + 1) +
-          " " +
-          rightPart +
-          " = " +
-          result
-      );
-      setText(result.toString());
-    }
-
-    function factorial(n) {
-      if (n === 0) {
-        return 1;
-      }
-      return n * factorial(n - 1);
-    }
-  };
-  const back = () => {};
+  async function calculate (str) {
+    const result = await fetch("http://localhost:4002/api/calculate",{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({str: str})
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      setText(data.result);
+    });
+    
+  }
 
   return (
     <div className="calculator">
