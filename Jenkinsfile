@@ -5,7 +5,7 @@ pipeline {
     stage('test') {
       steps {
         sh 'cd server'
-        sh 'npm install pm2 -g'
+        sh 'npm i'
         sh 'pm2 --name server start npm -- start'
         sh 'npm test'
         sh 'pm2 delete 0'
