@@ -1,6 +1,8 @@
 const cors = require('cors')
-
 const express = require("express");
+const request = require("supertest");
+const logger = require('./logger');
+
 const app = express();
 const port = 4002;
 
@@ -14,12 +16,12 @@ function factorial(n) {
   return n * factorial(n - 1);
 }
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+app.get("/api/", (req, res) => {
+  res.json({"txt" : "Hello World!"});
 });
 
 app.post("/api/calculate", (req, res) => {
-    console.log(req.body)
+  logger.log('info','Calculator backend hit');
   const str = req.body.str;
   let operatorIndex = -1;
   let result = NaN;
@@ -49,21 +51,21 @@ app.post("/api/calculate", (req, res) => {
     }
   }
   if (operatorIndex === -1) {
-    console.log("Operator not found");
+    logger.log('warn' ,"Operator not found");
     res.json({ result: "Operator not found" })
   } else if (isNaN(result)) {
-    console.log("Invalid expression");
+    logger.log('warn' ,"Invalid expression");
     res.json({ result: "Invalid expression" })
   } else {
     let leftPart = str.slice(0, operatorIndex);
     let rightPart = str.slice(operatorIndex + 1);
-    console.log(
+    logger.log('info','calculated '+
       leftPart +
         " " +
         str.slice(operatorIndex, operatorIndex + 1) +
         " " +
         rightPart +
-        " = " +
+        " and result is " +
         result
     );
     res.json({ result: result.toString() })
@@ -73,5 +75,6 @@ app.post("/api/calculate", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  logger.log("info",`Calculator BackEnd listening on port ${port}`);
 });
+
