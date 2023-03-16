@@ -4,6 +4,7 @@ pipeline {
   stages {
     stage('test') {
       steps {
+        sh 'cd server'
         sh 'npm install pm2 -g'
         sh 'pm2 --name server start npm -- start'
         sh 'npm test'
