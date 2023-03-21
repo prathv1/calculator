@@ -10,3 +10,67 @@ describe("GET /api/", () => {
       });
     });
 });
+
+describe("GET /api/calculate", () => {
+  it("5! should return 120", async () => {
+    const result = await fetch("http://localhost:4002/api/calculate",{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({str: "5!"})
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      expect(data.result).toBe('120');
+    });
+  });
+});
+
+describe("GET /api/calculate", () => {
+  it("9^3 should return 729", async () => {
+    const result = await fetch("http://localhost:4002/api/calculate",{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({str: "9^3"})
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      expect(data.result).toBe('729');
+    });
+  });
+});
+
+describe("GET /api/calculate", () => {
+  it("Ln 69 should return 4.23410650459726", async () => {
+    const result = await fetch("http://localhost:4002/api/calculate",{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({str: "ln69"})
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      expect(data.result).toBe('4.23410650459726');
+    });
+  });
+});
+
+describe("GET /api/calculate", () => {
+  it("√81 should return 9", async () => {
+    const result = await fetch("http://localhost:4002/api/calculate",{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({str: "√81"})
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      expect(data.result).toBe('9');
+    });
+  });
+});

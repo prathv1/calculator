@@ -1,16 +1,5 @@
 const { createLogger, format, transports } = require("winston");
 
-// const levels = {
-//   levels: {
-//     info: 0,
-//     warn: 1,
-//   },
-//   colors: {
-//     info: "green",
-//     warn: "yellow"
-//   },
-// };
-
 const logger = createLogger({
   level: "info",
   format: format.combine(
@@ -28,20 +17,6 @@ const logger = createLogger({
     new transports.File({ filename: "calculator.log", level: "warn" }),
   ],
 });
-
-// logger.configure({
-//   level: "warn",
-//   format: format.combine(
-//     format.timestamp({
-//       format: "YYYY-MM-DD HH:mm:ss",
-//     }),
-//     format.errors({ stack: true }),
-//     format.splat(),
-//     format.json()
-//   ),
-//   defaultMeta: { service: "calculatorBackend" },
-//   transports: [new transports.File({ filename: "calculator.log" }),],
-// });
 
 if (process.env.NODE_ENV !== "production") {
   logger.add(
