@@ -60,17 +60,17 @@ describe("GET /api/calculate", () => {
 });
 
 describe("GET /api/calculate", () => {
-  it("√81 should return 9", async () => {
+  it("√64 should return 8", async () => {
     const result = await fetch("http://localhost:4002/api/calculate",{
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({str: "√81"})
+      body: JSON.stringify({str: "√64"})
     })
     .then((response) => response.json())
     .then((data) => {
-      expect(data.result).toBe('9');
+      expect(data.result).toBe('8');
     });
   });
 });
