@@ -9,11 +9,11 @@ function index() {
   const [text, setText] = useState("");
 
   async function calculate (str) {
-    const result = await fetch("http://0abd9crvqdcht675vqvu8jhe48.ingress.palmito.duckdns.org:80/api/calculate",{
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+    const result = await fetch("http://0abd9crvqdcht675vqvu8jhe48.ingress.palmito.duckdns.org:80/api/calculate",method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+    },
       body: JSON.stringify({str: str})
     })
     .then((response) => response.json())
