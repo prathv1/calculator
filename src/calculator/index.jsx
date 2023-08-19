@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./index.css";
+import calculate from "./calculate";
 import renderer from 'react-test-renderer';
 
 function index() {
@@ -8,26 +9,16 @@ function index() {
   };
   const [text, setText] = useState("");
 
-  async function calculate (str) {
-    const result = await fetch("http://0abd9crvqdcht675vqvu8jhe48.ingress.palmito.duckdns.org:80/api/calculate",method: 'POST',
-    headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-    },
-      body: JSON.stringify({str: str})
-    })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      setText(data.result);
-    });
-    
+  function processText(str) {
+    str = calculate(str);
+    // console.log(str);
+    setText(str['result']);
   }
 
   return (
     <div className="calculator">
       <div className="result">
-        <input type="text" id="result" value={text} disabled />
+        <input type="text" id="result" className="input" value={text} disabled />
       </div>
       <div className="buttons">
         <div className="row">
@@ -101,7 +92,7 @@ function index() {
           <div className="button" onClick={(e) => insert(".")}>
             .
           </div>
-          <div className="button" onClick={(e) => calculate(text)}>
+          <div className="button" onClick={(e) => processText(text)}>
             =
           </div>
         </div>
