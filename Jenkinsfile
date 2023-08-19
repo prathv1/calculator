@@ -27,6 +27,7 @@ pipeline {
         // docker run -p 4001:3000 calcapp
         }
       }
+    }
 
     stage('deploy') {
       steps {
