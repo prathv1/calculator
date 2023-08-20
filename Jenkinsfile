@@ -1,6 +1,10 @@
 pipeline {
   agent any
   tools { nodejs 'node' }
+  environment {
+    DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+    DOCKER_HOME = '/usr/local/bin'
+  }
   stages {
     // stage('test') {
     //   steps {
@@ -16,9 +20,6 @@ pipeline {
     // }
     stage('Docker build') {
       steps {
-        env {
-          DOCKER_HOME = '/usr/local/bin'
-        }
         sh 'docker build -f Dockerfile -t calcapp .'
       }
     }
