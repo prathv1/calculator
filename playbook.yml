@@ -8,5 +8,5 @@
         source: pull
 
     - name: Create Docker containe
-      shell: "docker run -d -p --name calcapp 4001:3000 prathvirajbn/calcapp"
+      shell: "docker run -d --name calcapp -p 4001:3000 prathvirajbn/calcapp"
 
