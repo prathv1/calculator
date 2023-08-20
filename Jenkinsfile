@@ -16,6 +16,9 @@ pipeline {
     // }
     stage('Docker build') {
       steps {
+        env {
+          DOCKER_HOME = '/usr/local/bin'
+        }
         sh 'docker build -f Dockerfile -t calcapp .'
       }
     }
