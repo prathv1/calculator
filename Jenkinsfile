@@ -19,9 +19,6 @@ pipeline {
     stage('push calcapp to dockerHub') {
       steps {
         sh 'docker tag calcapp prathvirajbn/calcapp'
-        // withDockerRegistry([ credentialsId: 'dockerHubCreds', url: '' ]) {
-        //   sh 'docker push prathvirajbn/calcapp:latest'
-        // }
         sh 'docker push prathvirajbn/calcapp:latest'
       }
     }
