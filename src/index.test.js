@@ -50,6 +50,6 @@ test('5^ to must be invalid', () => {
   expect(calulate("5^").result).toBe("Invalid expression");
 });
 
-test('ln100 to must be invalid', () => {
+test('ln100 to must be 4.605170185988092', () => {
   expect(calulate("ln100").result).toBe("4.605170185988092");
 });
