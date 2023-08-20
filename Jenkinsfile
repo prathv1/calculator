@@ -3,7 +3,6 @@ pipeline {
   tools { nodejs 'node' }
   environment {
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
-    DOCKER_HOME = '/usr/local/bin'
   }
   stages {
     // stage('test') {
