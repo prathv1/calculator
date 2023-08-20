@@ -2,7 +2,7 @@ pipeline {
   agent any
   tools { nodejs 'node' }
   environment {
-    PATH = '/usr/local/bin/:$Path'
+    PATH="/usr/local/bin/:${env.PATH}
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
   }
   stages {
