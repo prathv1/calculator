@@ -8,7 +8,8 @@ pipeline {
   stages {
     stage('test') {
       steps {
-        echo 'Run Test Cases here'
+        sh 'npm i'
+        sh 'npm jest'
       }
     }
     stage('Docker build') {
